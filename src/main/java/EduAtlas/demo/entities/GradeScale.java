@@ -25,4 +25,35 @@ public class GradeScale {
         this.max_value = max_value;
         this.country = country;
     }
+
+    public GradeScale() {
+    }
+
+    public long getGrade_scale_id() {
+        return grade_scale_id;
+    }
+
+    public int getMin_value() {
+        return min_value;
+    }
+
+    public void setMin_value(int min_value) {
+        this.min_value = min_value;
+    }
+
+    public int getMax_value() {
+        return max_value;
+    }
+
+    public void setMax_value(int max_value) {
+        this.max_value = max_value;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 }

@@ -27,4 +27,44 @@ public class Degree {
         this.eqf_level = eqf_level;
         this.country = country;
     }
+
+    public Degree() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getDuration_years() {
+        return duration_years;
+    }
+
+    public void setDuration_years(int duration_years) {
+        this.duration_years = duration_years;
+    }
+
+    public int getEqf_level() {
+        return eqf_level;
+    }
+
+    public void setEqf_level(int eqf_level) {
+        this.eqf_level = eqf_level;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public long getDegree_id() {
+        return degree_id;
+    }
+
 }
