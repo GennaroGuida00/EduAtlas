@@ -27,7 +27,9 @@ public class GradeScale {
     }
 
     public GradeScale() {
+
     }
+
 
     public long getGrade_scale_id() {
         return grade_scale_id;

@@ -23,8 +23,6 @@ public class Country {
         this.years_compulsary_schooling = years_compulsary_schooling;
     }
 
-    public Country() {
-    }
 
     public void setCountry_id(long country_id) {
         this.country_id = country_id;

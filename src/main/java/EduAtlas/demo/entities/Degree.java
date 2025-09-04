@@ -28,8 +28,7 @@ public class Degree {
         this.country = country;
     }
 
-    public Degree() {
-    }
+
 
     public String getName() {
         return name;

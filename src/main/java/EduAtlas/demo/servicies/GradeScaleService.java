@@ -6,7 +6,9 @@ import EduAtlas.demo.payloads.NewGradeScaleDTO;
 import EduAtlas.demo.repositories.CountryRepository;
 import EduAtlas.demo.repositories.GradeScaleRpository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GradeScaleService {
 
     @Autowired

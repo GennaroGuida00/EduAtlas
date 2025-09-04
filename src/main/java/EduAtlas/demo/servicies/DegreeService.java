@@ -6,7 +6,9 @@ import EduAtlas.demo.payloads.NewDegreeDTO;
 import EduAtlas.demo.repositories.CountryRepository;
 import EduAtlas.demo.repositories.DegreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DegreeService {
 
     @Autowired

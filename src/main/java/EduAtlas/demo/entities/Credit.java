@@ -28,8 +28,6 @@ public class Credit {
         this.degree = degree;
     }
 
-    public Credit() {
-    }
 
     public void setYear(int year) {
         this.year = year;
