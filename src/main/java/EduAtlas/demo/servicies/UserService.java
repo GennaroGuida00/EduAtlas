@@ -1,0 +1,30 @@
+package EduAtlas.demo.servicies;
+
+import EduAtlas.demo.entities.User;
+import EduAtlas.demo.enums.RuoloUtente;
+import EduAtlas.demo.exceptions.NotFoundExceptions;
+import EduAtlas.demo.payloads.NewUserDTO;
+import EduAtlas.demo.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    @Autowired
+    UserRepository userRepository;
+
+    public User save(NewUserDTO userDTO){
+        User user=new User();
+        user.setName(userDTO.name());
+        user.setSurname(userDTO.surname());
+        user.setEmail(userDTO.email());
+        user.setPassword(userDTO.password());
+        user.setRuoloUtente(RuoloUtente.valueOf(userDTO.ruoloUtente()));
+        return userRepository.save(user);
+    }
+
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email).orElseThrow(()->new NotFoundExceptions(email));
+    }
+}

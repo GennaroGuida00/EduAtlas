@@ -1,7 +1,7 @@
 package EduAtlas.demo.servicies;
 
 import EduAtlas.demo.entities.Country;
-import EduAtlas.demo.excpetions.NotFoundExcpetions;
+import EduAtlas.demo.exceptions.NotFoundExceptions;
 import EduAtlas.demo.payloads.NewCountryDTO;
 import EduAtlas.demo.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class CountryService {
      }
 
      public Country findById(long id){
-         return countryRepository.findById(id).orElseThrow(()->new NotFoundExcpetions(id));
+         return countryRepository.findById(id).orElseThrow(()->new NotFoundExceptions(id));
      }
 
      public void findByIdAndDelete(long id){

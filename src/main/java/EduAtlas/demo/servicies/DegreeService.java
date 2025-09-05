@@ -1,7 +1,7 @@
 package EduAtlas.demo.servicies;
 
 import EduAtlas.demo.entities.Degree;
-import EduAtlas.demo.excpetions.NotFoundExcpetions;
+import EduAtlas.demo.exceptions.NotFoundExceptions;
 import EduAtlas.demo.payloads.NewDegreeDTO;
 import EduAtlas.demo.repositories.CountryRepository;
 import EduAtlas.demo.repositories.DegreeRepository;
@@ -21,17 +21,17 @@ public class DegreeService {
         degree.setName(degreeDTO.name());
         degree.setDuration_years(degreeDTO.duration_year());
         degree.setEqf_level(degreeDTO.eqf_level());
-        degree.setCountry(countryRepository.findById(degreeDTO.country_id()).orElseThrow(()->new NotFoundExcpetions(degreeDTO.country_id())));
+        degree.setCountry(countryRepository.findById(degreeDTO.country_id()).orElseThrow(()->new NotFoundExceptions(degreeDTO.country_id())));
         return degreeRepository.save(degree);
     }
 
     public Degree findById(long id){
-        Degree found=degreeRepository.findById(id).orElseThrow(()->new NotFoundExcpetions(id));
+        Degree found=degreeRepository.findById(id).orElseThrow(()->new NotFoundExceptions(id));
         return found;
     }
 
     public void findByIdAndDelete(long id){
-        Degree found=degreeRepository.findById(id).orElseThrow(()->new NotFoundExcpetions(id));
+        Degree found=degreeRepository.findById(id).orElseThrow(()->new NotFoundExceptions(id));
         degreeRepository.delete(found);
     }
 }
