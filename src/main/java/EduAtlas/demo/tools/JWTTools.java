@@ -2,6 +2,7 @@ package EduAtlas.demo.tools;
 
 
 import EduAtlas.demo.entities.User;
+import EduAtlas.demo.exceptions.UnauthorizedException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.validation.Valid;
@@ -25,7 +26,14 @@ public class JWTTools {
                 .compact();
     }
 
-    public void veriyToken(){
-
+    public void verifyToken(String token) {
+        try {
+            Jwts.parser()
+                    .verifyWith(Keys.hmacShaKeyFor(secret.getBytes()))
+                    .build()
+                    .parse(token);
+        } catch (Exception ex) {
+            throw new UnauthorizedException("il token non è corretto");
+        }
     }
 }

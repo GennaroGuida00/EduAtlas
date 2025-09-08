@@ -20,11 +20,20 @@ public class UserService {
         user.setSurname(userDTO.surname());
         user.setEmail(userDTO.email());
         user.setPassword(userDTO.password());
-        user.setRuoloUtente(RuoloUtente.valueOf(userDTO.ruoloUtente()));
+        user.setRuoloUtente(userDTO.ruoloUtente());
         return userRepository.save(user);
     }
 
     public User findByEmail(String email){
         return userRepository.findByEmail(email).orElseThrow(()->new NotFoundExceptions(email));
+    }
+
+    public User findById(long id){
+        return userRepository.findById(id).orElseThrow(()->new NotFoundExceptions(id));
+    }
+
+    public void deleteUser(long id){
+        User found=userRepository.findById(id).orElseThrow(()->new NotFoundExceptions(id));
+        userRepository.delete(found);
     }
 }

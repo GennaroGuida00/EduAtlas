@@ -10,7 +10,6 @@ import lombok.Setter;
 @Table(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +19,7 @@ public class User {
     private String surname;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private RuoloUtente ruoloUtente;
 
     public User(String name, String surname, String email, String password, RuoloUtente ruoloUtente) {

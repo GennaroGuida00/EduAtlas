@@ -1,7 +1,7 @@
 package EduAtlas.demo.servicies;
 
 import EduAtlas.demo.entities.User;
-import EduAtlas.demo.exceptions.UnauthorizedExcpetion;
+import EduAtlas.demo.exceptions.UnauthorizedException;
 import EduAtlas.demo.payloads.NewLoginDTO;
 import EduAtlas.demo.tools.JWTTools;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,6 @@ public class AuthService {
         if(found.getPassword().equals(loginDTO.password())){
             return jwtTools.createToken(found);
         }else
-            throw new UnauthorizedExcpetion();
+            throw new UnauthorizedException("la password dell'utente non è corretta");
     }
 }

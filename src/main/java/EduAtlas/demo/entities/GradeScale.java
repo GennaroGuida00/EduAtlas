@@ -26,9 +26,7 @@ public class GradeScale {
         this.country = country;
     }
 
-    public GradeScale() {
 
-    }
 
 
     public long getGrade_scale_id() {
