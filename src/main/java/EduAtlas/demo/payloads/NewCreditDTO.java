@@ -10,6 +10,8 @@ public record NewCreditDTO(
         @Positive
         int year,
 
+        boolean optional_year,
+
         @Positive
         @NotEmpty(message = "il degree deve essere obbligatorio")
         Long degree_id

@@ -1,11 +1,14 @@
 package EduAtlas.demo.servicies;
 
 import EduAtlas.demo.entities.Country;
-import EduAtlas.demo.exceptions.NotFoundExceptions;
+import EduAtlas.demo.entities.User;
+import EduAtlas.demo.exceptions.NotFoundException;
 import EduAtlas.demo.payloads.NewCountryDTO;
 import EduAtlas.demo.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CountryService {
@@ -20,12 +23,22 @@ public class CountryService {
          return countryRepository.save(newCountry);
      }
 
+    public List<Country> findAll(){
+        return countryRepository.findAll();
+    }
      public Country findById(long id){
-         return countryRepository.findById(id).orElseThrow(()->new NotFoundExceptions(id));
+         return countryRepository.findById(id).orElseThrow(()->new NotFoundException(id));
      }
 
      public void findByIdAndDelete(long id){
          Country found=findById(id);
          countryRepository.delete(found);
+     }
+
+     public Country findByIdAndUpdate (long id, NewCountryDTO countryDTO){
+         Country found=countryRepository.findById(id).orElseThrow(()->new NotFoundException(id));
+         found.setName(countryDTO.name());
+         found.setYears_compulsary_schooling(countryDTO.years_compulsary_schooling());
+         return countryRepository.save(found);
      }
 }

@@ -36,4 +36,13 @@ public class JWTTools {
             throw new UnauthorizedException("il token non è corretto");
         }
     }
+
+    public String extractIdFromToken(String accessToken) {
+        return Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(secret.getBytes()))
+                .build()
+                .parseSignedClaims(accessToken)
+                .getPayload()
+                .getSubject();
+    }
 }

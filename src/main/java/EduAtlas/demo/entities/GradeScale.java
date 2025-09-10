@@ -9,7 +9,6 @@ import lombok.Setter;
 @Table(name = "gradeScales")
 @Getter
 @Setter
-@NoArgsConstructor
 public class GradeScale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +25,9 @@ public class GradeScale {
         this.country = country;
     }
 
+    public GradeScale() {
 
-
+    }
 
     public long getGrade_scale_id() {
         return grade_scale_id;

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Table(name = "degrees")
 @Getter
 @Setter
-@NoArgsConstructor
+
 public class Degree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,9 @@ public class Degree {
         this.country = country;
     }
 
+    public Degree() {
+
+    }
 
 
     public String getName() {

@@ -10,22 +10,27 @@ import lombok.Setter;
 @Table(name = "credits")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Credit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int credit_id;
     private int credit_value;
     private int year;
+    private boolean optional_year;
     @ManyToOne
     @JoinColumn(name = "degree_id")
     private Degree degree;
 
-    public Credit(int credit_value, int year, Degree degree) {
+    public Credit(int credit_value, int year, boolean optional_year, Degree degree) {
         this.credit_value = credit_value;
         this.year = year;
+        this.optional_year = optional_year;
         this.degree = degree;
+    }
+
+    public Credit() {
+
     }
 
 
@@ -55,5 +60,13 @@ public class Credit {
 
     public void setCredit_value(int credit_value) {
         this.credit_value = credit_value;
+    }
+
+    public boolean isOptional_year() {
+        return optional_year;
+    }
+
+    public void setOptional_year(boolean optional_year) {
+        this.optional_year = optional_year;
     }
 }

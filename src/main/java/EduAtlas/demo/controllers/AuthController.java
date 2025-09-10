@@ -8,6 +8,7 @@ import EduAtlas.demo.servicies.AuthService;
 import EduAtlas.demo.servicies.UserService;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public long register(@RequestBody @Validated NewUserDTO payload) {
 
             User newUser = userService.save(payload);

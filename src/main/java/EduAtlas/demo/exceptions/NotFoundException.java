@@ -1,10 +1,10 @@
 package EduAtlas.demo.exceptions;
 
-public class NotFoundExceptions extends RuntimeException {
-    public NotFoundExceptions(long id) {
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(long id) {
         super("l'elemento con id "+id+" non è stato trovato");
     }
-    public NotFoundExceptions(String email) {
+    public NotFoundException(String email) {
         super("l'elemento con email "+email+" non è stato trovato");
     }
 
