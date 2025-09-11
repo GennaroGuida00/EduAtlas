@@ -9,7 +9,10 @@ public record NewDegreeDTO(
         String name,
 
         @Positive
-        int duration_year,
+        int min_years,
+
+        @Positive
+        int additional_years,
 
         @Positive
         int eqf_level,

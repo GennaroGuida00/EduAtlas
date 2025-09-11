@@ -15,15 +15,17 @@ public class Degree {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long degree_id;
     private String name;
-    private int duration_years;
+    private int min_years;
+    private int additional_years;
     private int eqf_level;
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
 
-    public Degree(int duration_years, String name, int eqf_level, Country country) {
-        this.duration_years = duration_years;
+    public Degree(String name, int min_years, int additional_years, int eqf_level, Country country) {
         this.name = name;
+        this.min_years = min_years;
+        this.additional_years = additional_years;
         this.eqf_level = eqf_level;
         this.country = country;
     }
@@ -41,12 +43,20 @@ public class Degree {
         this.name = name;
     }
 
-    public int getDuration_years() {
-        return duration_years;
+    public int getMin_years() {
+        return min_years;
     }
 
-    public void setDuration_years(int duration_years) {
-        this.duration_years = duration_years;
+    public void setMin_years(int min_years) {
+        this.min_years = min_years;
+    }
+
+    public int getAdditional_years() {
+        return additional_years;
+    }
+
+    public void setAdditional_years(int additional_years) {
+        this.additional_years = additional_years;
     }
 
     public int getEqf_level() {

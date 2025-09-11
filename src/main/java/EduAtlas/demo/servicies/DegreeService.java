@@ -22,7 +22,8 @@ public class DegreeService {
     public Degree save(NewDegreeDTO degreeDTO){
         Degree degree=new Degree();
         degree.setName(degreeDTO.name());
-        degree.setDuration_years(degreeDTO.duration_year());
+        degree.setMin_years(degreeDTO.min_years());
+        degree.setAdditional_years(degreeDTO.additional_years());
         degree.setEqf_level(degreeDTO.eqf_level());
         degree.setCountry(countryRepository.findById(degreeDTO.country_id()).orElseThrow(()->new NotFoundException(degreeDTO.country_id())));
         return degreeRepository.save(degree);
@@ -45,7 +46,8 @@ public class DegreeService {
         Degree found=degreeRepository.findById(id).orElseThrow(()->new NotFoundException(id));
         found.setName(degreeDTO.name());
         found.setEqf_level(degreeDTO.eqf_level());
-        found.setDuration_years(degreeDTO.duration_year());
+        found.setMin_years(degreeDTO.min_years());
+        found.setAdditional_years(degreeDTO.additional_years());
         found.setCountry(countryRepository.findById(degreeDTO.country_id()).orElseThrow(()->new NotFoundException(degreeDTO.country_id())));
         return degreeRepository.save(found);
     }
