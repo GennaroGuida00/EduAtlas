@@ -18,7 +18,6 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<Country> filterCountry() {
         return countryService.findAll();
     }
