@@ -1,14 +1,18 @@
 package EduAtlas.demo.payloads;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public record NewGradeScaleDTO(
         @Positive
-        int min_value,
+        double min_value,
 
         @Positive
-        int max_value,
+        double max_value,
+
+        @NotNull
+        String grade_value,
 
         @NotEmpty(message = "il paese deve essere obbligatorio")
         Long country_id

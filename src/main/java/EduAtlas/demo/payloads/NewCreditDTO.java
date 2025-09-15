@@ -5,12 +5,19 @@ import jakarta.validation.constraints.Positive;
 
 public record NewCreditDTO(
         @Positive
-        int credit_value,
+        int year_1_credits,
 
         @Positive
-        int year,
+        int year_2_credits,
+        @Positive
+        int year_3_credits,
 
-        boolean optional_year,
+        boolean year_4_is_additional,
+        @Positive
+        Integer year_4_credits,
+        boolean year_5_is_additional,
+        @Positive
+        Integer year_5_credits,
 
         @Positive
         @NotEmpty(message = "il degree deve essere obbligatorio")

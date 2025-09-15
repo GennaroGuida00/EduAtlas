@@ -23,6 +23,7 @@ public class GradeScaleService {
 
     public GradeScale save(NewGradeScaleDTO gradeScaleDTO){
         GradeScale gradeScale=new GradeScale();
+        gradeScale.setGrade_value(gradeScaleDTO.grade_value());
         gradeScale.setMin_value(gradeScaleDTO.min_value());
         gradeScale.setMax_value(gradeScaleDTO.max_value());
         gradeScale.setCountry(countryRepository.findById(gradeScaleDTO.country_id()).orElseThrow(()->new NotFoundException(gradeScaleDTO.country_id())));
@@ -43,6 +44,7 @@ public class GradeScaleService {
 
     public GradeScale findbyIdAndUpdate(long id, NewGradeScaleDTO gradeScaleDTO){
         GradeScale found=gradeScaleRepository.findById(id).orElseThrow(()->new NotFoundException(id));
+        found.setGrade_value(gradeScaleDTO.grade_value());
         found.setMin_value(gradeScaleDTO.min_value());
         found.setMax_value(gradeScaleDTO.max_value());
         found.setCountry(countryRepository.findById(gradeScaleDTO.country_id()).orElseThrow(()->new NotFoundException(gradeScaleDTO.country_id())));

@@ -13,13 +13,15 @@ public class GradeScale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long grade_scale_id;
-    private int min_value;
-    private int max_value;
+    private String grade_value;
+    private double min_value;
+    private double max_value;
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
 
-    public GradeScale(int min_value, int max_value, Country country) {
+    public GradeScale(String grade_value, double min_value, double max_value, Country country) {
+        this.grade_value = grade_value;
         this.min_value = min_value;
         this.max_value = max_value;
         this.country = country;
@@ -33,19 +35,19 @@ public class GradeScale {
         return grade_scale_id;
     }
 
-    public int getMin_value() {
+    public double getMin_value() {
         return min_value;
     }
 
-    public void setMin_value(int min_value) {
+    public void setMin_value(double min_value) {
         this.min_value = min_value;
     }
 
-    public int getMax_value() {
+    public double getMax_value() {
         return max_value;
     }
 
-    public void setMax_value(int max_value) {
+    public void setMax_value(double max_value) {
         this.max_value = max_value;
     }
 
@@ -55,5 +57,13 @@ public class GradeScale {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public String getGrade_value() {
+        return grade_value;
+    }
+
+    public void setGrade_value(String grade_value) {
+        this.grade_value = grade_value;
     }
 }

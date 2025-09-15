@@ -32,6 +32,11 @@ public class CreditController {
         return creditService.findById(credit_id);
     }
 
+    @GetMapping("/country/{countryId}")
+        public List<Credit> findCreditsByCountryId(@PathVariable long countryId){
+            return creditService.findCreditsbyCountryId(countryId);
+        }
+
     @PutMapping("/{creditId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Credit getByIdAndUpdate(@PathVariable long creditId, @RequestBody NewCreditDTO creditDTO){
@@ -43,4 +48,5 @@ public class CreditController {
     public void getByIdAndDelete(@PathVariable long creditId){
         creditService.findByIdAndDelete(creditId);
     }
+
 }
