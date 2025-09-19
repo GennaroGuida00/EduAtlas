@@ -27,7 +27,7 @@ public class CountryController {
     return countryService.findById(countryId);
 }
 
-@PostMapping("/saveCountry")
+@PostMapping
 @PreAuthorize("hasAuthority('ADMIN')")
     public Country save(@RequestBody NewCountryDTO countryDTO){
     return countryService.save(countryDTO);

@@ -1,9 +1,13 @@
 package EduAtlas.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "countries")
@@ -17,6 +21,12 @@ public class Country {
     private long country_id;
     private String name;
     private int years_compulsary_schooling;
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Degree> degrees = new ArrayList<>();
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<GradeScale> gradeScales = new ArrayList<>();
 
     public Country(String name, int years_compulsary_schooling) {
         this.name = name;

@@ -1,9 +1,13 @@
 package EduAtlas.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "degrees")
@@ -21,6 +25,9 @@ public class Degree {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+    @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Credit> credits = new ArrayList<>();
 
     public Degree(String name, int min_years, int additional_years, int eqf_level, Country country) {
         this.name = name;

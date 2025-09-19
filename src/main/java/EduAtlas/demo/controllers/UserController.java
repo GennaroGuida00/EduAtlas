@@ -4,6 +4,7 @@ import EduAtlas.demo.entities.User;
 import EduAtlas.demo.enums.RuoloUtente;
 import EduAtlas.demo.payloads.NewCreditDTO;
 import EduAtlas.demo.payloads.NewUserDTO;
+import EduAtlas.demo.payloads.NewUserRespDTO;
 import EduAtlas.demo.servicies.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,12 +20,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/all")
-    public List<User> filterUser() {
+    @GetMapping
+    public List<NewUserRespDTO> filterUser() {
         return userService.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/email")
     public User getByEmail(@RequestParam String email){
         return userService.findByEmail(email);
 

@@ -32,9 +32,10 @@ public class DegreeController {
     public Degree findById(long degree_id){
         return degreeService.findById(degree_id);
     }
+
     @PutMapping("/{degree_id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Degree getByIdAndDpdate(@PathVariable long degree_id, @RequestBody NewDegreeDTO degreeDTO){
+    public Degree getByIdAndUpdate(@PathVariable long degree_id, @RequestBody NewDegreeDTO degreeDTO){
         return degreeService.findByIdAndUpdate(degree_id,degreeDTO);
     }
 

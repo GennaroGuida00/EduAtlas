@@ -4,6 +4,7 @@ import EduAtlas.demo.entities.User;
 import EduAtlas.demo.exceptions.BadRequestException;
 import EduAtlas.demo.exceptions.NotFoundException;
 import EduAtlas.demo.payloads.NewUserDTO;
+import EduAtlas.demo.payloads.NewUserRespDTO;
 import EduAtlas.demo.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -36,9 +38,21 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> findAll(){
-        return userRepository.findAll();
+    public List<NewUserRespDTO> findAll() {
+        return userRepository.findAll().stream()
+                .map(user -> new NewUserRespDTO(
+                        user.getId_user(),
+                        user.getName(),
+                        user.getSurname(),
+                        user.getEmail(),
+                        user.getPassword(),
+                        user.getRuoloUtente()
+                ))
+                .collect(Collectors.toList());
     }
+
+
+
     public User findByEmail(String email){
         return userRepository.findByEmail(email).orElseThrow(()->new NotFoundException(email));
     }

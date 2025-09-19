@@ -16,7 +16,7 @@ public class CreditController {
     @Autowired
     CreditService creditService;
 
-    @PostMapping("/saveCredit")
+    @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public Credit save(@RequestBody NewCreditDTO creditDTO){
         return creditService.save(creditDTO);
