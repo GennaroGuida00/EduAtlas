@@ -8,6 +8,7 @@ import EduAtlas.demo.payloads.NewUserRespDTO;
 import EduAtlas.demo.servicies.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -23,6 +24,13 @@ public class UserController {
     @GetMapping
     public List<NewUserRespDTO> filterUser() {
         return userService.findAll();
+    }
+    @PostMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public long register(@RequestBody @Validated NewUserDTO payload) {
+
+        User newUser = userService.save(payload);
+        return newUser.getId_user();
     }
 
     @GetMapping("/email")

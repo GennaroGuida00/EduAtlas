@@ -32,11 +32,5 @@ public class AuthController {
         return new NewRespLoginDTO(accessToken);
     }
 
-    @PostMapping("/register")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public long register(@RequestBody @Validated NewUserDTO payload) {
 
-            User newUser = userService.save(payload);
-            return newUser.getId_user();
-        }
     }
