@@ -1,0 +1,46 @@
+package EduAtlas.controllers;
+
+import EduAtlas.entities.Country;
+import EduAtlas.payloads.NewCountryDTO;
+import EduAtlas.servicies.CountryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/countries")
+
+public class CountryController {
+    @Autowired
+    private CountryService countryService;
+
+    @GetMapping
+    public List<Country> filterCountry() {
+        return countryService.findAll();
+    }
+
+@GetMapping("/{countryId}")
+    public Country getById(@PathVariable long countryId){
+    return countryService.findById(countryId);
+}
+
+@PostMapping
+@PreAuthorize("hasAuthority('ADMIN')")
+    public Country save(@RequestBody NewCountryDTO countryDTO){
+    return countryService.save(countryDTO);
+}
+
+@DeleteMapping("/{countryId}")
+@PreAuthorize("hasAuthority('ADMIN')")
+    public void getByIdAndDelete(@PathVariable long countryId){
+    countryService.findByIdAndDelete(countryId);
+}
+
+@PutMapping("/{countryId}")
+@PreAuthorize("hasAuthority('ADMIN')")
+    public Country getByIdAndUpdate(@PathVariable long countryId, @RequestBody NewCountryDTO countryDTO){
+    return countryService.findByIdAndUpdate(countryId,countryDTO);
+}
+}

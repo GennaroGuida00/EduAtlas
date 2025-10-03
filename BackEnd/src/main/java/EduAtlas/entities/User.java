@@ -1,0 +1,94 @@
+package EduAtlas.entities;
+
+import EduAtlas.enums.RuoloUtente;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
+
+@Entity
+@Table(name = "users")
+@Getter
+@Setter
+public class User implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id_user;
+
+    private String name;
+    private String surname;
+    private String email;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private RuoloUtente ruoloUtente;
+
+    public User(String name, String surname, String email, String password, RuoloUtente ruoloUtente) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.ruoloUtente = ruoloUtente;
+    }
+
+    public User() {
+    }
+
+    public long getId_user() {
+        return id_user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(ruoloUtente.name()));
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return "";
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RuoloUtente getRuoloUtente() {
+        return ruoloUtente;
+    }
+
+    public void setRuoloUtente(RuoloUtente ruoloUtente) {
+        this.ruoloUtente = ruoloUtente;
+    }
+}
